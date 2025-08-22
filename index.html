@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Nation’s Capital Facing Dual Threats to Medicaid</title>
+    
+    <!--CSS & font-->
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    
+    <!-- d3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- scrollama -->
+    <script src="https://unpkg.com/scrollama"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+          <h1>Nation's Capital Facing Dual Threats to Medicaid</h1>
+          <h2>
+            A local budget cut and sweeping federal changes are projected to leave
+            32,000 D.C. residents uninsured over the next decade, a new analysis finds.
+          </h2>
+        </header>
+    
+        <main>
+          <p>By Sinyi Au</p>
+    
+          <p>
+            In the nation’s capital, the health and financial stability of more than
+            272,000 people – one in every three residents – rests upon one of the most
+            generous Medicaid programs in the country.
+          </p>
+    
+          <p>
+            Now, the promise of care is under an unprecedented threat on two fronts. 
+          </p>
+    
+          <p>
+            Here is what will happen in the next decade, when that safety net begins to unravel, dot by dot, under the weight of political decisions made by local and federal officials.
+          </p>
+    
+          <!-- scrollytelling container -->
+            <div class="scrolly-container">
+    
+                <!-- Fixed/sticky chart area -->
+                <div class="graphic">
+                <div id="unitChart"></div>
+                <div id="annotation"></div>
+                </div>
+        
+                <!-- Text steps -->
+                <div class="steps">
+
+                    <div class="scroll-buffer"></div>
+
+                    <section data-step="intro_allblue">
+                        <div class="text-block">
+                        <p>
+                            The D.C. Medicaid program covered 272,249 residents by the end of June, according to the latest data from the Department of Health Care Finance. Each dot represents 500 enrollees.
+                        </p>
+                        </div>
+                    </section>
+
+                    <section data-step="healthydc">
+                        <div class="text-block">
+                            <p>
+                                The first blow comes from the D.C. government itself. In its July budget, the city cut eligibility for 25,000 residents – primarily working childless adults whose annual income is between $21,597 and $31,000 in 2025 – moving them from Medicaid to the more limited “Healthy DC” plan. 
+                            </p>
+                        
+                        </div>
+                    </section>
+            
+                    <section data-step="local_cut">
+                        <div class="text-block">
+                        <p>
+                            But for 3,000 residents with slightly higher incomes of up to $32,865 a year, there is no new plan. They lose their subsidized coverage entirely, pushed into the commercial market or, more likely, the ranks of the uninsured. 
+                        </p>
+                        </div>
+                    </section>
+            
+                    <section data-step="federal_combined">
+                        <p>
+                        Next, a sweeping federal bill targets nearly 100,000 of the city’s low-income adults, who will be subjected to a monthly work requirement of 80 hours.  
+                        </p>
+                    </section>
+            
+                    <section data-step="federal_split">
+                        <p>
+                            While all are at high risk from keeping up with the paperwork, an expert analysis projects 32,000 are expected to be left completely uninsured within the next decade.
+                        </p>
+                    </section>
+            
+                    <section data-step="federal_low">
+                        <p>
+                            The city’s 91,211 children and 54,382 residents who are elderly, have disabilities or receive long-term support are statutorily exempt. They represent the final group not directly targeted by these policy changes.
+                        </p>
+                    </section>
+
+                    <div class="scroll-buffer"></div>
+                </div> 
+            </div> <!-- .scrolly-container -->
+
+        <h3>
+            D.C. Budget Cut Lowers Eligibility Cap
+        </h3>
+        <section class="chart"> 
+            <div id="interactive.form"></div>
+            <div class="screener-container">
+        
+                <div id="step-1" class="step active">
+                    <h2>Which of these D.C. Medicaid groups best describes you?</h2>
+                    <p>Choose the one that is the main reason you have Medicaid.</p>
+                    <ul class="options-list">
+                        <li><button class="option-button" onclick="showStep('step-2')">Childless Adult</button></li>
+                        <li><button class="option-button" onclick="showStep('step-2')">Parent / Caretaker</button></li>
+                        <li><button class="option-button" onclick="showStep('result-unlikely')">Child under 19</button></li>
+                        <li><button class="option-button" onclick="showStep('result-unlikely')">Aged (65+), blind or disabled</button></li>
+                        <li><button class="option-button" onclick="showStep('result-unlikely')">Receiving Long-Term Care or services through a Disability Waiver</button></li>
+                        <li><button class="option-button" onclick="showStep('result-unlikely')">Enrolled in a Medicare Savings Program (like QMB)</button></li>
+                    </ul>
+                </div>
+        
+                <div id="step-2" class="step">
+                    <h2>The new rules have several exemptions. Do any of the following situations apply to you?</h2>
+                    <ul class="options-list">
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I am pregnant or have given birth in the past 12 months.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I am the main caretaker for a child under age 13.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I am the main caretaker for a disabled person.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I am medically frail, certified by a doctor as unable to work, or have a serious/complex medical condition.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I am participating in a drug or alcohol addiction treatment program.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-low-risk')">I already meet the work requirements for SNAP (food stamps) or TANF.</button></li>
+                        <li><button class="option-button" onclick="showStep('result-high-risk')">None of the above apply to me.</button></li>
+                    </ul>
+                </div>
+        
+                <div id="result-unlikely" class="step">
+                    <div class="result-box result-unlikely">
+                        <h3>Unlikely to be Affected</h3>
+                        <p>Based on the new law, your Medicaid coverage is <strong>unlikely</strong> to be affected. The new community engagement (work) requirements generally do not apply to individuals who are eligible for Medicaid due to age (under 19 or 65+), blindness or a disability.</p>
+                    </div>
+                    <button class="restart-button" onclick="showStep('step-1')">Start Over</button>
+                </div>
+                
+                <div id="result-low-risk" class="step">
+                    <div class="result-box result-low-risk">
+                        <h3>Low Risk, but action May Be Needed</h3>
+                        <p>Based on your answer, you <strong>likely qualify for an exemption</strong> from the new community engagement requirements. However, you may need to provide documentation to the D.C. government to verify your exemption status.</p>
+                    </div>
+                    <button class="restart-button" onclick="showStep('step-1')">Start Over</button>
+                </div>
+        
+                <div id="result-high-risk" class="step">
+                    <div class="result-box result-high-risk">
+                        <h3>High Risk</h3>
+                        <p>Based on your answers, your Medicaid coverage is at <strong>HIGH RISK</strong> of being affected by the new bill.</p>
+                        <ul>
+                            <li><strong>What you must do:</strong> To keep your coverage, you will be required to perform and report at least <strong>80 hours per month</strong> of "community engagement," such as work, community service, job training or education.</li>
+                            <li><strong>You must report your hours:</strong> You will have to report these hours to the D.C. government.</li>
+                            ]<li><strong>Reporting is complex:</strong> The law requires you to prove you met the 80-hour rule for at least one month <em>before</em> you can enroll, and then verify it again at least every six months.</li>
+                            <li><strong>No other insurance help:</strong> If you lose Medicaid for not meeting these requirements, the law also makes you <strong>ineligible for financial help</strong> (premium tax credits) to buy other health insurance on the ACA Marketplace.</li>
+                        </ul>
+                    </div>
+                    <button class="restart-button" onclick="showStep('step-1')">Start Over</button>
+                </div>
+        </section>
+
+            <main>
+                <p>The KFF analysis reveals a “trickle-down” effect that threatens the entire local health infrastructure. The loss of 46,000 insured patients means hospital revenues will plummet. 
+                </p>
+    
+                <p>The KFF analysis reveals a “trickle-down” effect that threatens the entire local health infrastructure. The loss of 46,000 insured patients means hospital revenues will plummet. 
+                </p>
+
+                <p>At the same time, the projected 32,000 new uninsured residents will create a surge in “uncompensated care costs that hospitals will face,” according to Euhus. 
+                </p>
+
+                <p>For a city with only “a handful of hospitals,” as Georgetown University professor Edwin Park noted, this pressure could be catastrophic, forcing providers to lay off staff or offer fewer services.
+                </p>
+
+                <p>“These cuts are the inevitable result of federal decisions… shifting costs to states and in turn forcing them to make really painful, harsh cuts,” Park said. 
+                </p>
+
+                <p>While data confirms that D.C. is among the hardest-hit jurisdictions in the nationwide Medicaid cuts, what the numbers cannot fully capture is the landscape of profound uncertainty that lies ahead.               
+                </p>
+
+                <p>“It definitely is an unprecedented number of cuts,” said Euhus. “I think everyone's kind of wondering how exactly it's going to play out. It's just not very clear.”
+                </p>
+            </main>
+
+        <div class="timeline-horizontal">
+            <div class="event medicaid">
+                <div class="date">July 28, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">D.C. Budget approval</div>
+                <div class="description">Income eligibility lowered from 216% to 138% of the Federal Poverty Line, which is $21,597 or above. Approximately 25,000 D.C. residents will be removed from the Medicaid program.</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">Moratorium on New and Existing Provider Taxes</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event alliance">
+                <div class="date">Ending in 2027 <span class="badge">Alliance</span></div>
+                <div class="title">The D.C. budget also initiates cuts to the D.C. Healthcare Alliance</div>
+                <div class="description">A separate program that provides care to residents who don't qualify for Medicaid, including many lawfully present migrants.</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">Lower Cap for State Directed Payments</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title"><a href="https://www.kff.org/quick-take/planned-parenthood-remains-in-limbo-as-court-reviews-their-request-to-block-federal-medicaid-funding-ban/" target="_blank" rel="nofollow noopener">Ongoing litigation</a></div>
+                <div class="description">Currently blocked for some providers — Prohibiting Federal Medicaid Payments to Certain Providers</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">Moratorium on Implementation of Eligibility and Enrollment Final Rule</div>
+                <div class="description">Delays implementation of certain provisions in the rule until October 1, 2034</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid/Medicare</span></div>
+                <div class="title">Moratorium on Implementation of Medicare Savings Program Final Rule</div>
+                <div class="description">Delays implementation of certain provisions in the rule until October 1, 2034</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">Requirements for Provider Tax Uniformity Waivers</div>
+                <div class="description">HHS Secretary may provide a transition period of up to three years</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">July 4, 2025 <span class="badge">Medicaid/Medicare</span></div>
+                <div class="title">Moratorium on Implementation of Nursing Home Staffing Final Rule</div>
+                <div class="description">Delays implementation of certain provisions in the rule until October 1, 2034</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">October 1, 2025 <span class="badge">Medicaid</span></div>
+                <div class="title">Rural Health Transformation Program</div>
+                <div class="description">Date funds become available; CMS to determine state application deadline, which will be no later than December 31, 2025.</div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2026 <span class="badge">ACA</span></div>
+                <div class="title">Expiration of the Enhanced Premium Tax Credits</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2026 <span class="badge">Medicaid</span></div>
+                <div class="title">Eliminating Temporary Financial Incentive for Medicaid Expansion</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2026 <span class="badge">ACA</span></div>
+                <div class="title">Recapture of Excess Premium Tax Credits</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2026 <span class="badge">ACA</span></div>
+                <div class="title">ACA Marketplace Tax Credit Eligibility for Low-Income Immigrants Without Medicaid Coverage</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2026 <span class="badge">ACA</span></div>
+                <div class="title">Special Enrollment Periods and Tax Credit Eligibility</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">October 1, 2026 <span class="badge">Medicaid</span></div>
+                <div class="title">Federal Medical Assistance Percentage (FMAP) for Emergency Medicaid</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">October 1, 2026 <span class="badge">Medicaid</span></div>
+                <div class="title">Restricting Certain Immigrant Eligibility for Medicaid and CHIP</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">December 31, 2026 <span class="badge">Medicaid</span></div>
+                <div class="title">More Frequent Eligibility Redeterminations</div>
+                <div class="description">For renewals scheduled on or after December 31, 2026</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Work Requirements</div>
+                <div class="description">(or earlier at state option)</div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Verifying Enrollee Addresses</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Ensuring Deceased Individuals Do Not Remain Enrolled</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Limiting Retroactive Coverage</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Requiring Budget Neutrality for Section 1115 Demonstration Waivers</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2027 <span class="badge">ACA</span></div>
+                <div class="title">ACA Marketplace Coverage Eligibility for Lawfully Present Immigrants</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">October 1, 2027 <span class="badge">Medicaid</span></div>
+                <div class="title">Limiting Provider Taxes</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event medicaid">
+                <div class="date">January 1, 2028 <span class="badge">Medicaid</span></div>
+                <div class="title">Reducing State Directed Payments</div>
+                <div class="description"></div>
+              </div>
+              
+              <div class="event aca">
+                <div class="date">January 1, 2028 <span class="badge">ACA</span></div>
+                <div class="title">Pre-Enrollment Verification of Eligibility
+        </div>
+    
+        <script src="unit_chart.js"></script>  
+        <script>
+        function showStep(stepId) {
+          document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        
+          const target = document.getElementById(stepId);
+          if (target) {
+            target.classList.add('active');
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        </script>
+    </div>
+</body>
+</html>
