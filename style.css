@@ -15,21 +15,26 @@ body {
 
 header h1 {
     font-weight: 700;
-    font-size: 2em;
+    font-size: 2.1em;
     margin-bottom: 10px;
     text-align: center;
 }
 
 h2 {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.4em;
     margin-bottom: 20px;
 }
 
 p {
     font-size: 1.2em;
+    font-weight: 400;
     margin-bottom: 10px;
 }
+
+a {
+    color: #003366;
+  }
 
 img, svg {
     max-width: 100%;
@@ -38,7 +43,7 @@ img, svg {
     margin: 20px 0;
 }
 
-/* Corrected class selector */
+/* Scrolly */
 .scrolly-container {
   display: flex;
   align-items: flex-start;
@@ -93,14 +98,13 @@ img, svg {
   background: rgba(0,0,0,0.03);
 }
 
-/* 表單外框 */
+/* Screener */
 .chart {
   max-width: 600px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
 }
 
-/* 每個步驟的容器 */
 .step {
   display: none;
   padding: 1rem;
@@ -108,24 +112,22 @@ img, svg {
   border-radius: 6px;
 }
 
-/* 顯示中的步驟 */
 .step.active {
   display: block;
 }
 
-/* 通用設定 — 適用於所有 scrolly steps */
 section[data-step] {
-    display: flex;              /* 如果外層需要左右佈局可以保留 flex */
+    display: flex;              
     flex-direction: column; 
-    margin-bottom: 15vh;    /* 子元素垂直排列 */
+    margin-bottom: 15vh;   
   }
   
-  /* 段落通用樣式 */
+
 section[data-step] p {
-    display: block;              /* 每段獨立一行 */
-    margin: 0 0 1em 0;           /* 段落間距 */
-    line-height: 1.5;
-    font-size: 1.1em;         /* 行距舒適 */
+    display: block;              
+    margin: 0 0 1em 0;         
+    line-height: 1.9;
+    font-size: 1.1em;       
   }
 
 .text-block {
@@ -134,42 +136,40 @@ section[data-step] p {
   }
 
 .scroll-buffer {
-  height: 30vh; /* 視需要調整 */
+  height: 30vh; 
 }
-/* 按鈕樣式 */
+
+/* screener*/
 .chart {
     max-width: 700px;
     margin: 2rem auto;
     padding-bottom: 10vh;
     padding-top:10vh;
+    border-radius: 8px;
   }
   
-  /* 步驟容器 */
   .step {
     display: none;
-    padding: 1rem;
+    padding: 2.2rem;
     border-radius: 6px;
-    background: hsl(0, 0%, 86%);
+    background: hsl(0, 0%, 100%);
     text-align: left;
   }
 
   .step h3{
     font-size: 1.4em;
-
   }
   
   .step.active {
     display: block;
   }
   
-  /* 選項列表 */
   .options-list {
     list-style: none;  
     padding: 0;
     margin: 1rem 0;
   }
   
-  /* 按鈕樣式 */
   .option-button {
     display: block;
     width: 100%;
@@ -189,15 +189,13 @@ section[data-step] p {
     background-color: #e6e6e6;
     border-color: #999;
   }
-  
-  /* 結果框 */
+
   .result-box {
     padding: 1.2rem;
     border-radius: 4px;
     color: black;
   }
   
-  /* Start Over 按鈕 */
   .restart-button {
     margin-top: 1rem;
     padding: 0.6rem 1.2rem;
@@ -233,15 +231,14 @@ section[data-step] p {
     gap: 1.5rem;
     overflow-x: auto;
     padding: 1rem 0;
-    scroll-snap-type: x mandatory; /* 平滑對齊效果，可選 */
+    scroll-snap-type: x mandatory; 
   }
   
-  /* 單一卡片樣式 */
   .timeline-horizontal .event {
     background: #fff;
     border-radius: 8px;
     padding: 1rem;
-    flex: 0 0 calc((100% / 3) - 1rem); /* 三等分減去間距 */
+    flex: 0 0 calc((100% / 3) - 1rem); 
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     flex-shrink: 0;
   }
@@ -260,57 +257,53 @@ section[data-step] p {
     color: #fff;
   }
   
-  /* 三種分類顏色 */
   .timeline-horizontal .event.medicaid .badge {
     background-color: #007bff;
   }
-  .timeline-horizontal .event.aca .badge {
-    background-color: #ff9800;
-  }
+  
   .timeline-horizontal .event.alliance .badge {
     background-color: #28a745;
   }
   
   .timeline-horizontal .title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 0.25rem;
   }
   
   .timeline-horizontal .description {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     color: #555;
     line-height: 1.4;
   }
 
-/* responsive */
-@media (max-width: 900px){
-    .scrolly-container {
-        flex-direction: column;
-    }
-    .graphic {
-        position: relative;
-        top: 0;
-        width: 100%;
-        margin-bottom: 2rem;
-        height: auto;
-    }
-    .steps {
-        width: 100%;
-        padding-left: 0;
-    }
+footer{
+    font-size: 0.9em;
+    text-align: center;
 }
 
-@media (max-width: 600px){
-    .container {
-        padding: 30px 20px;
-    }
-    header h1 {
-        font-size: 1.6em;
-    }
-    header h2 {
-        font-size: 1.3em;
-    }
-    p {
-        font-size: 1em;
-    }
+/* responsive */
+@media (max-width: 900px) {
+  .scrolly-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .graphic,
+  .steps {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .scrolly-container {
+    flex-direction: column;
+  }
+
+  .graphic,
+  .steps {
+    flex: 1 1 100%;
+    max-width: 100%;
+    padding-left: 0;
+  }
 }

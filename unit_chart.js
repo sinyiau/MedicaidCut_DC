@@ -1,6 +1,4 @@
-// -----------------------------
 // Data
-// -----------------------------
 const data = [
     { group: "Childless adults, parents and caretaker (138% - 200% FPL)", risk: "healthydc", count: 25000 },
     { group: "Childless adults, parent & caretaker (>200% FPL)", risk: "local_cut", count: 3000 },
@@ -14,9 +12,9 @@ const data = [
 const UNIT_SIZE = 500;
 const colorByRisk = {
     healthydc: "#ffc107",       
-    local_cut: "#d32f2f",      
-    federal_work: "#ff5722",
-    federal_uninsured: "#d32f2f",
+    local_cut: "#ff0000",      
+    federal_work: "#ff8a8a",
+    federal_uninsured: "#750000",
     federal_low: "#008000"
 };
 
@@ -39,7 +37,7 @@ function getNumCols(containerWidth) {
 }
 
 let svg;
-let currentStep = "intro_allblue"; // track current view
+let currentStep = "intro_allblue"; 
 
 function renderChart() {
     d3.select("#unitChart").selectAll("*").remove();
@@ -128,7 +126,7 @@ function updateHighlight(stepKey) {
     else if (stepKey === "federal_combined") {
         circles.attr("fill", d => 
             (d.risk === "federal_work" || d.risk === "federal_uninsured") 
-                ? "#ff5722" 
+                ? "#ff8a8a" 
                 : "#ccc"
         );
         d3.select("#annotation").text("Subject to federal work requirements: 98,656");
@@ -141,19 +139,13 @@ function updateHighlight(stepKey) {
         const last72 = uninsuredIndexes.slice(-72);
 
         circles.attr("fill", (d, i) => {
-            if (d.risk === "federal_work") return "#ff5722";
+            if (d.risk === "federal_work") return "#ff8a8a";
             if (d.risk === "federal_uninsured") {
-                return last72.includes(i) ? "#9c2007" : "#ff5722";
+                return last72.includes(i) ? "#750000" : "#ff8a8a";
             }
             return "#ccc";
         });
         d3.select("#annotation").text("Maybe uninsured in the next decade: 36,000");
-    }
-    
-    else if (stepKey === "show_all_colors") { 
-        circles.transition().duration(800)
-               .attr("fill", d => colorByRisk[d.risk]); // 直接回到原始顏色表
-        d3.select("#annotation").text(""); 
     }
 
     else {
