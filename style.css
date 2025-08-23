@@ -45,7 +45,6 @@ img, svg {
   gap: 1rem;
   margin: 0 auto;
   max-width: 1000px;
-  padding: 30px 20px;
   padding-top: 10vh;
   padding-bottom:30vh;
 }
@@ -55,7 +54,7 @@ img, svg {
   top: 30px;
   width: 57%;
   height: 60vh;
-}f
+}
 
 #unitChart {
   width: 100%;
