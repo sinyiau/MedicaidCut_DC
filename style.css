@@ -141,6 +141,8 @@ section[data-step] p {
 .chart {
     max-width: 700px;
     margin: 2rem auto;
+    padding-bottom: 10vh;
+    padding-top:10vh;
   }
   
   /* 步驟容器 */
@@ -148,7 +150,13 @@ section[data-step] p {
     display: none;
     padding: 1rem;
     border-radius: 6px;
-    background: #fff;
+    background: hsl(0, 0%, 86%);
+    text-align: left;
+  }
+
+  .step h3{
+    font-size: 1.4em;
+
   }
   
   .step.active {
@@ -157,7 +165,7 @@ section[data-step] p {
   
   /* 選項列表 */
   .options-list {
-    list-style: none;   /* 去掉左邊的點 */
+    list-style: none;  
     padding: 0;
     margin: 1rem 0;
   }
@@ -170,7 +178,7 @@ section[data-step] p {
     margin-bottom: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: #ededed;
     color: #333;
     text-align: left;
     cursor: pointer;
@@ -187,19 +195,7 @@ section[data-step] p {
   .result-box {
     padding: 1.2rem;
     border-radius: 4px;
-    color: #fff;
-  }
-  
-  .result-unlikely {
-    background-color: #00ff00; /* 不太可能受影響：藍灰 */
-  }
-  
-  .result-low-risk {
-    background-color: #ffff00;
-  }
-  
-  .result-high-risk {
-    background-color: #d73027; 
+    color: black;
   }
   
   /* Start Over 按鈕 */

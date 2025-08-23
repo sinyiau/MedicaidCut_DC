@@ -5,7 +5,7 @@ const data = [
     { group: "Childless adults, parents and caretaker (138% - 200% FPL)", risk: "healthydc", count: 25000 },
     { group: "Childless adults, parent & caretaker (>200% FPL)", risk: "local_cut", count: 3000 },
     { group: "Childless adults, parent & caretaker (<138% FPL)", risk: "federal_work", count: 66656 },
-    { group: "Childless adults, parent & caretaker (<138% FPL)", risk: "federal_uninsured", count: 36000 },
+    { group: "Childless adults, parent & caretaker (<138% FPL)", risk: "federal_uninsured", count: 32000 },
     { group: "Children (Children's Health Insurance Program)", risk: "federal_low", count: 73725 },
     { group: "Children (non-CHIP)", risk: "federal_low", count: 17486 },
     { group: "Aged, disabled and others", risk: "federal_low", count: 54382 },
@@ -101,7 +101,7 @@ function readableRisk(key) {
     if (key === "healthydc") return "Moved to Healthy DC plan: 25,000";
     if (key === "local_cut") return "Removed from subsidized coverage: 3,000";
     if (key === "federal_work") return "Subject to federal work requirements: 98,656";
-    if (key === "federal_uninsured") return "Maybe uninsured in the next decade: 36,000";
+    if (key === "federal_uninsured") return "Maybe uninsured in the next decade: 32,000";
     if (key === "federal_low") return "Statutorily exempted from Medicaid cuts: 145,593 ";
     return key;
 }
@@ -128,7 +128,7 @@ function updateHighlight(stepKey) {
     else if (stepKey === "federal_combined") {
         circles.attr("fill", d => 
             (d.risk === "federal_work" || d.risk === "federal_uninsured") 
-                ? "#ff0000" 
+                ? "#ff5722" 
                 : "#ccc"
         );
         d3.select("#annotation").text("Subject to federal work requirements: 98,656");
@@ -141,9 +141,9 @@ function updateHighlight(stepKey) {
         const last72 = uninsuredIndexes.slice(-72);
 
         circles.attr("fill", (d, i) => {
-            if (d.risk === "federal_work") return "#ff0000";
+            if (d.risk === "federal_work") return "#ff5722";
             if (d.risk === "federal_uninsured") {
-                return last72.includes(i) ? "#fdcb6e" : "#ff0000";
+                return last72.includes(i) ? "#9c2007" : "#ff5722";
             }
             return "#ccc";
         });
